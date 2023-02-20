@@ -51,8 +51,10 @@ function populate(num) {
         return;
     }
 
-    // Replace digit w/ new digit else concatenate new digit
-    if (count === 0) {
+    // Replace digit w/ new digit else concatenate new digit (LOGIC IS BUGGY)
+    if (currentDigits === '0' && digit !== '0') {
+        document.querySelector('#digits').textContent = digit;
+    } else if (currentDigits === '0' && digit === '0'){
         document.querySelector('#digits').textContent = digit;
     } else {
         document.querySelector('#digits').textContent = currentDigits + digit;
