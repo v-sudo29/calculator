@@ -12,3 +12,11 @@ function subtract(...num) {
     return sum;
 }
 
+// Multiply function
+function multiply(...num) {
+    let product = num.reduce((a, b) => {
+        return a * b;
+    });
+    return product;
+}
+
