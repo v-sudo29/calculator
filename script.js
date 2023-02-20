@@ -46,14 +46,12 @@ function populate(num){
     let digit = document.getElementById(num).textContent;
     let currentDigits = document.getElementById('digits').textContent;
 
-    // If reset, replace current digit with new digit
+    // Replace digit w/ new digit else concatenate new digit
     if (count === 0) {
         document.querySelector('#digits').textContent = digit;
     } else {
         document.querySelector('#digits').textContent = currentDigits + digit;
     }
-
-    // Replace previous digit(s) with new digit
 
     // Style digit
     let span = document.querySelector('#digits');
@@ -64,7 +62,6 @@ function populate(num){
     span.style.fontFamily = 'Verdana';
 
     count++;
-
 }
 
 // BUTTONS: Listen for clicks
