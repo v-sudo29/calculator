@@ -42,9 +42,14 @@ function operate(operator, a, b) {
 }
 
 // FUNCTION: Populate display when click number buttons
-function populate(num){
+function populate(num) {
     let digit = document.getElementById(num).textContent;
     let currentDigits = document.getElementById('digits').textContent;
+
+    // Return if digit count is more than 7
+    if (count > 6) {
+        return;
+    }
 
     // Replace digit w/ new digit else concatenate new digit
     if (count === 0) {
@@ -64,6 +69,11 @@ function populate(num){
     count++;
 }
 
+// FUNCTION: reset display
+function reset() {
+    document.querySelector('#digits').textContent = 0;
+}
+
 // BUTTONS: Listen for clicks
 const btn0 = document.querySelector('#zero');
 const btn1 = document.querySelector('#one');
@@ -75,6 +85,7 @@ const btn6 = document.querySelector('#six');
 const btn7 = document.querySelector('#seven');
 const btn8 = document.querySelector('#eight');
 const btn9 = document.querySelector('#nine');
+const resetbtn = document.querySelector('#reset');
 
     // Numbers
     btn0.addEventListener('click', () => populate('zero'));
@@ -87,3 +98,6 @@ const btn9 = document.querySelector('#nine');
     btn7.addEventListener('click', () => populate('seven'));
     btn8.addEventListener('click', () => populate('eight'));
     btn9.addEventListener('click', () => populate('nine'));
+
+    // Reset
+    resetbtn.addEventListener('click', reset);
