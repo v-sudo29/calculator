@@ -1,5 +1,32 @@
+html {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 100px 500px;
+}
+
+.container {
+    border: 1px solid black;
+    width: 300px;
+}
+
+
 .buttons {
     display: grid;
-    gap: 5px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-item {
+    height: 50px;
+}
+
+.grid-col-span-2 {
+    grid-column: span 2;
+}
+
+.display {
+    height: 75px;
+    width: 99.50%;
+    border: 1px solid black;
 }
