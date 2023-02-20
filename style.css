@@ -32,10 +32,10 @@ body {
     border: 1px solid black;
 }
 
-.digits {
+#digits {
     position: absolute;
     bottom: 0;
     right: 0;
     font-size: 60px;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Verdana';
 }
