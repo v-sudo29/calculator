@@ -6,6 +6,10 @@ body {
     padding: 100px 500px;
 }
 
+body a {
+    -webkit-tap-highlight-color: transparent;
+}
+
 .container {
     border: 1px solid black;
     border-radius: 5px;
