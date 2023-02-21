@@ -1,4 +1,5 @@
 // GLOBAL VARIABLES
+const body = document.querySelector('body');
 let displayValue = 0;
 let count = 0;
 let firstNum = null;
@@ -206,3 +207,22 @@ const equalsbtn = document.querySelector('#equals');
         operatorClicked = false;
         count = 0;
     });
+
+// Backspace Key
+body.addEventListener('keydown', function(e) {
+    const key = e.key;
+    let currentDigits = document.querySelector('#digits').textContent;
+    
+    if (key === 'Backspace' || key === 'delete') {
+
+        // If current count is 1, replace with 0
+        if (count === 1) {
+            document.querySelector('#digits').textContent = '0';
+            count = 0;
+        } else if (count > 1) {
+            document.querySelector('#digits').textContent = 
+            currentDigits.slice(0, currentDigits.length - 1);
+            count --;
+        }
+    }
+});
