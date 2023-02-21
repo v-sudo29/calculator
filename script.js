@@ -127,6 +127,7 @@ const btn7 = document.querySelector('#seven');
 const btn8 = document.querySelector('#eight');
 const btn9 = document.querySelector('#nine');
 const dotbtn = document.querySelector('#dot');
+const signbtn = document.querySelector('#sign');
 const resetbtn = document.querySelector('#reset');
 const addbtn = document.querySelector('#add');
 const subtractbtn = document.querySelector('#subtract');
@@ -155,6 +156,18 @@ const equalsbtn = document.querySelector('#equals');
             dotCount++;
         }
         return;
+    });
+
+    // Sign
+    signbtn.addEventListener('click', () => {
+        let currentDigits = document.getElementById('digits').textContent;
+        console.log(currentDigits);
+        if (currentDigits > 0) {
+            currentDigits = parseFloat(currentDigits);
+            document.querySelector('#digits').textContent = '-' + currentDigits;
+        } else if (currentDigits < 0) {
+            document.querySelector('#digits').textContent = currentDigits.slice(1);
+        }
     });
 
     // Reset
