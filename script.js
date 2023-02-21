@@ -152,6 +152,13 @@ function dot() {
     return;
 }
 
+// FUNCTION: clicked abstraction
+function clicked() {
+    operatorClicked = true;
+    count = 0;
+    dotCount = 0;
+}
+
 // BUTTONS: Listen for clicks and hover
 const btn0 = document.querySelector('#zero');
 const btn1 = document.querySelector('#one');
@@ -200,27 +207,19 @@ const equalsbtn = document.querySelector('#equals');
 
     // Operators
     addbtn.addEventListener('click', () => {
-        operatorClicked = true;
-        count = 0;
-        dotCount = 0;
+        clicked();
         operator = 'add';
     });   
     subtractbtn.addEventListener('click', () => {
-        operatorClicked = true;
-        count = 0;
-        dotCount = 0;
+        clicked();
         operator = 'subtract';
     });
     multiplybtn.addEventListener('click', () => {
-        operatorClicked = true;
-        count = 0;
-        dotCount = 0;
+        clicked();
         operator = 'multiply';
     });
     dividebtn.addEventListener('click', () => {
-        operatorClicked = true;
-        count = 0;
-        dotCount = 0;
+        clicked();
         operator = 'divide';
     });
 
@@ -308,33 +307,25 @@ body.addEventListener('keydown', function(e) {
 
         // Add
         if (key === '+' && shiftPressed === true) {
-            operatorClicked = true;
-            count = 0;
-            dotCount = 0;
+            clicked();
             operator = 'add';
         }
 
         // Subtract
         if (key === '-') {
-            operatorClicked = true;
-            count = 0;
-            dotCount = 0;
+            clicked();
             operator = 'subtract';
         }
 
         // Multiply
         if (key === '*' && shiftPressed === true) {
-            operatorClicked = true;
-            count = 0;
-            dotCount = 0;
+            clicked();
             operator = 'multiply';
         }
 
         // Divide
         if (key === '/') {
-            operatorClicked = true;
-            count = 0;
-            dotCount = 0;
+            clicked();
             operator = 'divide';
         }
     
@@ -370,6 +361,4 @@ body.addEventListener('keydown', function(e) {
     }
 });
 
-body.addEventListener('keyup', function(e) {
-    shiftPressed = false;
-});
+body.addEventListener('keyup', () => (shiftPressed = false));
