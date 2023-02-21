@@ -162,8 +162,8 @@ const equalsbtn = document.querySelector('#equals');
 
     // Equals
     equalsbtn.addEventListener('click', () => {
-        firstNum = parseInt(firstNum);
-        secondNum = parseInt(secondNum);
+        firstNum = parseFloat(firstNum);
+        secondNum = parseFloat(secondNum);
         let total = null;
 
         if (operator === 'add') {
