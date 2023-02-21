@@ -99,7 +99,6 @@ let digit = null;
         }
         count++;
     }
-    console.log(`First number: ${firstNum} Second number: ${secondNum}`);
 
     // Style digit
     let span = document.querySelector('#digits');
@@ -247,6 +246,16 @@ body.addEventListener('keydown', function(e) {
         }
     }
 
+    // Dot
+    if (key === '.') {
+        let currentDigits = document.getElementById('digits').textContent;
+        if (dotCount === 0) {
+            document.querySelector('#digits').textContent = currentDigits + '.';
+            dotCount++;
+        }
+        return;
+    }
+
     // Numbers
     if (parseInt(key) >= 0 && parseInt(key) <= 9) {
         keyPressed = true;
@@ -292,7 +301,7 @@ body.addEventListener('keydown', function(e) {
         }
     
     // Equals
-    if (key === '=') {
+    if (key === '=' || key === 'Enter') {
         firstNum = parseFloat(firstNum);
         secondNum = parseFloat(secondNum);
         let total = null;
