@@ -1,7 +1,9 @@
 // GLOBAL VARIABLES
-let displayValue = 0;
 const buttons = document.querySelectorAll('grid-items');
+let displayValue = 0;
 let count = 0;
+
+
 
 // FUNCTION: add
 function sum(...num) {
@@ -74,6 +76,7 @@ function populate(num) {
 // FUNCTION: reset display
 function reset() {
     document.querySelector('#digits').textContent = 0;
+    count = 0;
 }
 
 // BUTTONS: Listen for clicks
