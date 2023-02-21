@@ -159,6 +159,16 @@ function clicked() {
     dotCount = 0;
 }
 
+// FUNCTION: hover changes color
+function hover(button) {
+    button.addEventListener('mouseover', () => {
+        button.style.backgroundColor = 'white';
+    });
+    button.addEventListener('mouseleave', () => {
+        button.style.backgroundColor = '#f0f0f0';
+    });
+}
+
 // BUTTONS: Listen for clicks and hover
 const btn0 = document.querySelector('#zero');
 const btn1 = document.querySelector('#one');
@@ -258,14 +268,7 @@ const equalsbtn = document.querySelector('#equals');
     });
 
     // Hover changes color
-    buttons.forEach((button) => {
-        button.addEventListener('mouseover', () => {
-            button.style.backgroundColor = 'white';
-        });
-        button.addEventListener('mouseleave', () => {
-            button.style.backgroundColor = '#f0f0f0';
-        });
-    });
+    buttons.forEach(button => hover(button));
 
 // Keyboard support
 body.addEventListener('keydown', function(e) {
