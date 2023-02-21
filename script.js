@@ -282,6 +282,14 @@ body.addEventListener('keydown', function(e) {
             dotCount = 0;
             operator = 'multiply';
         }
+
+        // Divide
+        if (key === '/') {
+            operatorClicked = true;
+            count = 0;
+            dotCount = 0;
+            operator = 'divide';
+        }
     
     // Equals
     if (key === '=') {
