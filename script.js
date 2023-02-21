@@ -118,6 +118,7 @@ const btn8 = document.querySelector('#eight');
 const btn9 = document.querySelector('#nine');
 const resetbtn = document.querySelector('#reset');
 const addbtn = document.querySelector('#add');
+const subtractbtn = document.querySelector('#subtract');
 const equalsbtn = document.querySelector('#equals');
 
     // Numbers
@@ -140,6 +141,11 @@ const equalsbtn = document.querySelector('#equals');
         operatorClicked = true;
         count = 0;
         operator = 'add';
+    });   
+    subtractbtn.addEventListener('click', () => {
+        operatorClicked = true;
+        count = 0;
+        operator = 'subtract';
     });
 
     // Equals
@@ -150,6 +156,10 @@ const equalsbtn = document.querySelector('#equals');
 
         if (operator === 'add') {
             total = sum(firstNum, secondNum);
+            document.querySelector('#digits').textContent = total;
+            firstNum = total;
+        } else if (operator === 'subtract') {
+            total = subtract(firstNum, secondNum);
             document.querySelector('#digits').textContent = total;
             firstNum = total;
         }
