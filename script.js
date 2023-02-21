@@ -3,6 +3,7 @@ let displayValue = 0;
 let count = 0;
 let firstNum = null;
 let secondNum = null;
+let dotCount = 0;
 let operator = null;
 let operatorClicked = false;
 
@@ -115,12 +116,14 @@ const btn6 = document.querySelector('#six');
 const btn7 = document.querySelector('#seven');
 const btn8 = document.querySelector('#eight');
 const btn9 = document.querySelector('#nine');
+const dotbtn = document.querySelector('#dot');
 const resetbtn = document.querySelector('#reset');
 const addbtn = document.querySelector('#add');
 const subtractbtn = document.querySelector('#subtract');
 const multiplybtn = document.querySelector('#multiply');
 const dividebtn = document.querySelector('#divide');
 const equalsbtn = document.querySelector('#equals');
+
 
     // Numbers
     btn0.addEventListener('click', () => populate('zero'));
@@ -134,6 +137,16 @@ const equalsbtn = document.querySelector('#equals');
     btn8.addEventListener('click', () => populate('eight'));
     btn9.addEventListener('click', () => populate('nine'));
 
+    // Dot
+    dotbtn.addEventListener('click', () => {
+        let currentDigits = document.getElementById('digits').textContent;
+        if (dotCount === 0) {
+            document.querySelector('#digits').textContent = currentDigits + '.';
+            dotCount++;
+        }
+        return;
+    });
+
     // Reset
     resetbtn.addEventListener('click', reset);
 
@@ -141,21 +154,25 @@ const equalsbtn = document.querySelector('#equals');
     addbtn.addEventListener('click', () => {
         operatorClicked = true;
         count = 0;
+        dotCount = 0;
         operator = 'add';
     });   
     subtractbtn.addEventListener('click', () => {
         operatorClicked = true;
         count = 0;
+        dotCount = 0;
         operator = 'subtract';
     });
     multiplybtn.addEventListener('click', () => {
         operatorClicked = true;
         count = 0;
+        dotCount = 0;
         operator = 'multiply';
     });
     dividebtn.addEventListener('click', () => {
         operatorClicked = true;
         count = 0;
+        dotCount = 0;
         operator = 'divide';
     });
 
