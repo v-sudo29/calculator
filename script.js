@@ -4,6 +4,7 @@ let displayValue = 0;
 let count = 0;
 let firstNum = null;
 let secondNum = null;
+let operator = null;
 let operatorClicked = false;
 
 // FUNCTION: add
@@ -117,6 +118,7 @@ const btn8 = document.querySelector('#eight');
 const btn9 = document.querySelector('#nine');
 const resetbtn = document.querySelector('#reset');
 const addbtn = document.querySelector('#add');
+const equalsbtn = document.querySelector('#equals');
 
     // Numbers
     btn0.addEventListener('click', () => populate('zero'));
@@ -136,5 +138,21 @@ const addbtn = document.querySelector('#add');
     // Operators
     addbtn.addEventListener('click', () => {
         operatorClicked = true;
+        count = 0;
+        operator = 'add';
+    });
+
+    // Equals
+    equalsbtn.addEventListener('click', () => {
+        firstNum = parseInt(firstNum);
+        secondNum = parseInt(secondNum);
+        let total = null;
+
+        if (operator === 'add') {
+            total = sum(firstNum, secondNum);
+            document.querySelector('#digits').textContent = total;
+            firstNum = total;
+        }
+        operatorClicked = false;
         count = 0;
     });
