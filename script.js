@@ -120,6 +120,7 @@ const resetbtn = document.querySelector('#reset');
 const addbtn = document.querySelector('#add');
 const subtractbtn = document.querySelector('#subtract');
 const multiplybtn = document.querySelector('#multiply');
+const dividebtn = document.querySelector('#divide');
 const equalsbtn = document.querySelector('#equals');
 
     // Numbers
@@ -153,6 +154,11 @@ const equalsbtn = document.querySelector('#equals');
         count = 0;
         operator = 'multiply';
     });
+    dividebtn.addEventListener('click', () => {
+        operatorClicked = true;
+        count = 0;
+        operator = 'divide';
+    });
 
     // Equals
     equalsbtn.addEventListener('click', () => {
@@ -170,6 +176,14 @@ const equalsbtn = document.querySelector('#equals');
             firstNum = total;
         } else if (operator === 'multiply') {
             total = multiply(firstNum, secondNum);
+            document.querySelector('#digits').textContent = total;
+            firstNum = total;
+        } else if (operator === 'divide') {
+            if (secondNum === 0) {
+                alert("Cannot divide by 0");
+                return;
+            }
+            total = divide(firstNum, secondNum);
             document.querySelector('#digits').textContent = total;
             firstNum = total;
         }
