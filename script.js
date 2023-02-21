@@ -8,6 +8,7 @@ let secondNum = null;
 let dotCount = 0;
 let operator = null;
 let operatorClicked = false;
+let keyPressed = false;
 
 // FUNCTION: add
 function sum(...num) {
@@ -53,8 +54,15 @@ function operate(operator, a, b) {
 
 // FUNCTION: Populate display when click number buttons
 function populate(num) {
-    let digit = document.getElementById(num).textContent;
-    let currentDigits = document.getElementById('digits').textContent;
+let currentDigits = document.getElementById('digits').textContent;
+let digit = null;
+
+    // If keyboard pressed
+    if (keyPressed === true) {
+        digit = num;
+    } else if (keyPressed === false) {
+        digit = document.getElementById(num).textContent;
+    }
 
     // Return if digit count is more than 7
     if (count > 6) {
@@ -219,11 +227,12 @@ const equalsbtn = document.querySelector('#equals');
         });
     });
 
-// Backspace Key
+// Keyboard support
 body.addEventListener('keydown', function(e) {
     const key = e.key;
     let currentDigits = document.querySelector('#digits').textContent;
     
+    // Backspace
     if (key === 'Backspace' || key === 'delete') {
 
         // If current count is 1, replace with 0
@@ -235,5 +244,12 @@ body.addEventListener('keydown', function(e) {
             currentDigits.slice(0, currentDigits.length - 1);
             count --;
         }
+    }
+
+    // Numbers
+    if (parseInt(key) >= 0 && parseInt(key) <= 9) {
+        keyPressed = true;
+        populate(key);
+        keyPressed = false;
     }
 });
