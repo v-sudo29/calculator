@@ -2,30 +2,35 @@
 const buttons = document.querySelectorAll('grid-items');
 let displayValue = 0;
 let count = 0;
-
-
+let firstNum = null;
+let secondNum = null;
+let operatorClicked = false;
 
 // FUNCTION: add
 function sum(...num) {
-     let sum = num.reduce((a, b) => a + b);
+    let sum = num.reduce((a, b) => a + b);
+    count = 0;
     return sum;
 }
 
 // FUNCTION: subtract
 function subtract(...num) {
     let sum = num.reduce((a, b) => a - b);
+    count = 0;
     return sum;
 }
 
 // FUNCTION: multiply
 function multiply(...num) {
     let product = num.reduce((a, b) => a * b);
+    count = 0;
     return product;
 }
 
 // FUNCTION: divide
 function divide(...num) {
     let quotient = num.reduce((a, b) => a / b);
+    count = 0;
     return quotient; 
 }
 
@@ -53,14 +58,36 @@ function populate(num) {
         return;
     }
 
-    // Replace digit w/ new digit else concatenate new digit (LOGIC IS BUGGY)
-    if (currentDigits === '0' && digit !== '0') {
-        document.querySelector('#digits').textContent = digit;
-    } else if (currentDigits === '0' && digit === '0'){
-        document.querySelector('#digits').textContent = digit;
+    // If an operator has not been clicked, populate
+    if (operatorClicked === false) {
+
+        // Replace digit w/ new digit else concatenate new digit
+        if (currentDigits === '0' && digit !== '0') {
+            document.querySelector('#digits').textContent = digit;
+            firstNum = digit;
+        } else if (currentDigits === '0' && digit === '0'){
+            document.querySelector('#digits').textContent = digit;
+            firstNum = digit;
+            count = 0;
+            return;
+        } else {
+            document.querySelector('#digits').textContent = currentDigits + digit;
+            firstNum = currentDigits + digit;
+        }
+        count++;
     } else {
-        document.querySelector('#digits').textContent = currentDigits + digit;
+
+        // Replace current digits w/ new digit
+        if (count === 0) {
+            document.querySelector('#digits').textContent = digit;
+            secondNum = digit;
+        } else {
+            document.querySelector('#digits').textContent = currentDigits + digit;
+            secondNum = currentDigits + digit;
+        }
+        count++;
     }
+    console.log(`First number: ${firstNum} Second number: ${secondNum}`);
 
     // Style digit
     let span = document.querySelector('#digits');
@@ -69,8 +96,6 @@ function populate(num) {
     span.style.right = '0';
     span.style.fontSize = '60px';
     span.style.fontFamily = 'Verdana';
-
-    count++;
 }
 
 // FUNCTION: reset display
@@ -91,6 +116,7 @@ const btn7 = document.querySelector('#seven');
 const btn8 = document.querySelector('#eight');
 const btn9 = document.querySelector('#nine');
 const resetbtn = document.querySelector('#reset');
+const addbtn = document.querySelector('#add');
 
     // Numbers
     btn0.addEventListener('click', () => populate('zero'));
@@ -106,3 +132,9 @@ const resetbtn = document.querySelector('#reset');
 
     // Reset
     resetbtn.addEventListener('click', reset);
+
+    // Operators
+    addbtn.addEventListener('click', () => {
+        operatorClicked = true;
+        count = 0;
+    });
