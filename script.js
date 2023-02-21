@@ -1,5 +1,4 @@
 // GLOBAL VARIABLES
-const buttons = document.querySelectorAll('grid-items');
 let displayValue = 0;
 let count = 0;
 let firstNum = null;
