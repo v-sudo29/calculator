@@ -334,6 +334,12 @@ body.addEventListener('keydown', function(e) {
             clicked();
             operator = 'divide';
         }
+
+        // Percent
+        if (key === '%' && shiftPressed === true) {
+            clicked();
+            percent();
+        }
     
     // Equals
     if (key === '=' || key === 'Enter') {
