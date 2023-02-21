@@ -233,14 +233,17 @@ const equalsbtn = document.querySelector('#equals');
             total = sum(firstNum, secondNum);
             document.querySelector('#digits').textContent = total;
             firstNum = total;
+            count = 0;
         } else if (operator === 'subtract') {
             total = subtract(firstNum, secondNum);
             document.querySelector('#digits').textContent = total;
             firstNum = total;
+            count = 0;
         } else if (operator === 'multiply') {
             total = multiply(firstNum, secondNum);
             document.querySelector('#digits').textContent = total;
             firstNum = total;
+            count = 0;
         } else if (operator === 'divide') {
             if (secondNum === 0) {
                 alert("Cannot divide by 0");
@@ -249,9 +252,9 @@ const equalsbtn = document.querySelector('#equals');
             total = divide(firstNum, secondNum);
             document.querySelector('#digits').textContent = total;
             firstNum = total;
+            count = 0;
         }
         operatorClicked = false;
-        count = 0;
     });
 
     // Hover changes color
