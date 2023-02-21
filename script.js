@@ -1,5 +1,6 @@
 // GLOBAL VARIABLES
 const body = document.querySelector('body');
+const buttons = document.querySelectorAll('button');
 let displayValue = 0;
 let count = 0;
 let firstNum = null;
@@ -106,7 +107,7 @@ function reset() {
     count = 0;
 }
 
-// BUTTONS: Listen for clicks
+// BUTTONS: Listen for clicks and hover
 const btn0 = document.querySelector('#zero');
 const btn1 = document.querySelector('#one');
 const btn2 = document.querySelector('#two');
@@ -206,6 +207,16 @@ const equalsbtn = document.querySelector('#equals');
         }
         operatorClicked = false;
         count = 0;
+    });
+
+    // Hover changes color
+    buttons.forEach((button) => {
+        button.addEventListener('mouseover', () => {
+            button.style.backgroundColor = 'white';
+        });
+        button.addEventListener('mouseleave', () => {
+            button.style.backgroundColor = '#f0f0f0';
+        });
     });
 
 // Backspace Key
