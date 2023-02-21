@@ -266,6 +266,22 @@ body.addEventListener('keydown', function(e) {
             dotCount = 0;
             operator = 'add';
         }
+
+        // Subtract
+        if (key === '-') {
+            operatorClicked = true;
+            count = 0;
+            dotCount = 0;
+            operator = 'subtract';
+        }
+
+        // Multiply
+        if (key === '*' && shiftPressed === true) {
+            operatorClicked = true;
+            count = 0;
+            dotCount = 0;
+            operator = 'multiply';
+        }
     
     // Equals
     if (key === '=') {
