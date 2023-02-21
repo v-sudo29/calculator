@@ -121,10 +121,35 @@ function sign() {
     console.log(currentDigits);
     if (currentDigits > 0) {
         currentDigits = parseFloat(currentDigits);
-        document.querySelector('#digits').textContent = '-' + currentDigits;
+        currentDigits = '-' + currentDigits;
+        document.querySelector('#digits').textContent = currentDigits;
     } else if (currentDigits < 0) {
-        document.querySelector('#digits').textContent = currentDigits.slice(1);
+        currentDigits = currentDigits.slice(1);
+        document.querySelector('#digits').textContent = currentDigits;
     }
+
+    if (operatorClicked === false) {
+        firstNum = currentDigits;
+    } else if (operatorClicked === true) {
+        secondNum = currentDigits;
+    }
+}
+
+// FUNCTION: percent
+function percent() {
+    let currentDigits = document.getElementById('digits').textContent;
+    currentDigits = parseFloat(currentDigits);
+    document.querySelector('#digits').textContent = currentDigits / 100;
+}
+
+// FUNCTION: dot
+function dot() {
+    let currentDigits = document.getElementById('digits').textContent;
+    if (dotCount === 0) {
+        document.querySelector('#digits').textContent = currentDigits + '.';
+        dotCount++;
+    }
+    return;
 }
 
 // BUTTONS: Listen for clicks and hover
@@ -162,19 +187,13 @@ const equalsbtn = document.querySelector('#equals');
     btn9.addEventListener('click', () => populate('nine'));
 
     // Dot
-    dotbtn.addEventListener('click', () => {
-        let currentDigits = document.getElementById('digits').textContent;
-        if (dotCount === 0) {
-            document.querySelector('#digits').textContent = currentDigits + '.';
-            dotCount++;
-        }
-        return;
-    });
+    dotbtn.addEventListener('click', dot);
 
     // Sign
     signbtn.addEventListener('click', sign);
 
     // Percent
+    percentbtn.addEventListener('click', percent);
 
     // Reset
     resetbtn.addEventListener('click', reset);
