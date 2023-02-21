@@ -3,12 +3,13 @@ const body = document.querySelector('body');
 const buttons = document.querySelectorAll('button');
 let displayValue = 0;
 let count = 0;
+let dotCount = 0;
 let firstNum = null;
 let secondNum = null;
-let dotCount = 0;
 let operator = null;
 let operatorClicked = false;
 let keyPressed = false;
+let shiftPressed = false;
 
 // FUNCTION: add
 function sum(...num) {
@@ -231,7 +232,7 @@ const equalsbtn = document.querySelector('#equals');
 body.addEventListener('keydown', function(e) {
     const key = e.key;
     let currentDigits = document.querySelector('#digits').textContent;
-    
+    console.log(key);
     // Backspace
     if (key === 'Backspace' || key === 'delete') {
 
@@ -252,4 +253,52 @@ body.addEventListener('keydown', function(e) {
         populate(key);
         keyPressed = false;
     }
+
+    // Operators
+    if (key === 'Shift') {
+        shiftPressed = true;
+    }
+
+        // Add
+        if (key === '+' && shiftPressed === true) {
+            operatorClicked = true;
+            count = 0;
+            dotCount = 0;
+            operator = 'add';
+        }
+    
+    // Equals
+    if (key === '=') {
+        firstNum = parseFloat(firstNum);
+        secondNum = parseFloat(secondNum);
+        let total = null;
+
+        if (operator === 'add') {
+            total = sum(firstNum, secondNum);
+            document.querySelector('#digits').textContent = total;
+            firstNum = total;
+        } else if (operator === 'subtract') {
+            total = subtract(firstNum, secondNum);
+            document.querySelector('#digits').textContent = total;
+            firstNum = total;
+        } else if (operator === 'multiply') {
+            total = multiply(firstNum, secondNum);
+            document.querySelector('#digits').textContent = total;
+            firstNum = total;
+        } else if (operator === 'divide') {
+            if (secondNum === 0) {
+                alert("Cannot divide by 0");
+                return;
+            }
+            total = divide(firstNum, secondNum);
+            document.querySelector('#digits').textContent = total;
+            firstNum = total;
+        }
+        operatorClicked = false;
+        count = 0;
+    }
+});
+
+body.addEventListener('keyup', function(e) {
+    shiftPressed = false;
 });
