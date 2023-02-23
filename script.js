@@ -106,7 +106,7 @@ let digit = null;
     span.style.bottom = '0';
     span.style.right = '0';
     span.style.fontSize = '60px';
-    span.style.fontFamily = 'Verdana';
+    span.style.fontFamily = 'Roboto Mono', monospace;
 }
 
 // FUNCTION: reset display
