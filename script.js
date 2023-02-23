@@ -371,6 +371,11 @@ body.addEventListener('keydown', function(e) {
         operatorClicked = false;
         count = 0;
     }
+
+    // AC
+    if (key === 'Escape') {
+        reset();
+    }
 });
 
 body.addEventListener('keyup', () => (shiftPressed = false));
