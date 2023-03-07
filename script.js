@@ -1,3 +1,8 @@
+/* eslint-disable no-shadow */
+/* eslint-disable prefer-const */
+/* eslint-disable no-sequences */
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-expressions */
 // GLOBAL VARIABLES
 const body = document.querySelector('body');
 const buttons = document.querySelectorAll('button');
@@ -12,14 +17,14 @@ let shiftPressed = false;
 
 // FUNCTION: add
 function sum(...num) {
-  const sum = num.reduce((a, b) => a + b);
+  let sum = num.reduce((a, b) => a + b);
   count = 0;
   return sum;
 }
 
 // FUNCTION: subtract
 function subtract(...num) {
-  const sum = num.reduce((a, b) => a - b);
+  let sum = num.reduce((a, b) => a - b);
   count = 0;
   return sum;
 }
@@ -48,7 +53,7 @@ function operate(operator, a, b) {
     return multiply(a, b);
   } if (operator === '/') {
     return divide(a, b);
-  }
+  } return null;
 }
 
 // FUNCTION: Populate display when numbers clicked or number keys pressed
@@ -143,7 +148,7 @@ function dot() {
   const currentDigits = document.getElementById('digits').textContent;
   if (dotCount === 0) {
     document.querySelector('#digits').textContent = `${currentDigits}.`;
-    dotCount++;
+    dotCount += 1;
   }
 }
 
@@ -277,7 +282,7 @@ body.addEventListener('keydown', (e) => {
       count = 0;
     } else if (count > 1) {
       document.querySelector('#digits').textContent = currentDigits.slice(0, currentDigits.length - 1);
-      count--;
+      count -= 1;
     }
   }
 
@@ -286,7 +291,7 @@ body.addEventListener('keydown', (e) => {
     const currentDigits = document.getElementById('digits').textContent;
     if (dotCount === 0) {
       document.querySelector('#digits').textContent = `${currentDigits}.`;
-      dotCount++;
+      dotCount += 1;
     }
     return;
   }
