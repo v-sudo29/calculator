@@ -47,13 +47,17 @@ function divide(...num) {
 function operate(operator, a, b) {
   if (operator === '+') {
     return sum(a, b);
-  } if (operator === '-') {
+  }
+  if (operator === '-') {
     return subtract(a, b);
-  } if (operator === '*') {
+  }
+  if (operator === '*') {
     return multiply(a, b);
-  } if (operator === '/') {
+  }
+  if (operator === '/') {
     return divide(a, b);
-  } return null;
+  }
+  return null;
 }
 
 // FUNCTION: Populate display when numbers clicked or number keys pressed
@@ -107,7 +111,7 @@ function populate(num) {
   span.style.bottom = '0';
   span.style.right = '0';
   span.style.fontSize = '60px';
-  span.style.fontFamily = 'Roboto Mono', monospace;
+  (span.style.fontFamily = 'Roboto Mono'), monospace;
 }
 
 // FUNCTION: reset display
@@ -281,7 +285,10 @@ body.addEventListener('keydown', (e) => {
       document.querySelector('#digits').textContent = '0';
       count = 0;
     } else if (count > 1) {
-      document.querySelector('#digits').textContent = currentDigits.slice(0, currentDigits.length - 1);
+      document.querySelector('#digits').textContent = currentDigits.slice(
+        0,
+        currentDigits.length - 1
+      );
       count -= 1;
     }
   }
