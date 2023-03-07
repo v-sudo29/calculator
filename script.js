@@ -1,7 +1,6 @@
 // GLOBAL VARIABLES
 const body = document.querySelector('body');
 const buttons = document.querySelectorAll('button');
-let displayValue = 0;
 let count = 0;
 let dotCount = 0;
 let firstNum = null;
@@ -13,160 +12,156 @@ let shiftPressed = false;
 
 // FUNCTION: add
 function sum(...num) {
-    let sum = num.reduce((a, b) => a + b);
-    count = 0;
-    return sum;
+  const sum = num.reduce((a, b) => a + b);
+  count = 0;
+  return sum;
 }
 
 // FUNCTION: subtract
 function subtract(...num) {
-    let sum = num.reduce((a, b) => a - b);
-    count = 0;
-    return sum;
+  const sum = num.reduce((a, b) => a - b);
+  count = 0;
+  return sum;
 }
 
 // FUNCTION: multiply
 function multiply(...num) {
-    let product = num.reduce((a, b) => a * b);
-    count = 0;
-    return product;
+  const product = num.reduce((a, b) => a * b);
+  count = 0;
+  return product;
 }
 
 // FUNCTION: divide
 function divide(...num) {
-    let quotient = num.reduce((a, b) => a / b);
-    count = 0;
-    return quotient; 
+  const quotient = num.reduce((a, b) => a / b);
+  count = 0;
+  return quotient;
 }
 
 // FUNCTION: operate
 function operate(operator, a, b) {
-    if (operator === '+') {
-        return sum(a, b);
-    } else if (operator === '-') {
-        return subtract(a, b);
-    } else if (operator === '*') {
-        return multiply(a, b);
-    } else if (operator === '/') {
-        return divide(a, b);
-    } 
-    return;
+  if (operator === '+') {
+    return sum(a, b);
+  } if (operator === '-') {
+    return subtract(a, b);
+  } if (operator === '*') {
+    return multiply(a, b);
+  } if (operator === '/') {
+    return divide(a, b);
+  }
 }
 
 // FUNCTION: Populate display when numbers clicked or number keys pressed
 function populate(num) {
-let currentDigits = document.getElementById('digits').textContent;
-let digit = null;
+  const currentDigits = document.getElementById('digits').textContent;
+  let digit = null;
 
-    // If keyboard pressed
-    if (keyPressed === true) {
-        digit = num;
-    } else if (keyPressed === false) {
-        digit = document.getElementById(num).textContent;
-    }
+  // If keyboard pressed
+  if (keyPressed === true) {
+    digit = num;
+  } else if (keyPressed === false) {
+    digit = document.getElementById(num).textContent;
+  }
 
-    // Return if digit count is more than 7
-    if (count > 6) {
-        return;
-    }
+  // Return if digit count is more than 7
+  if (count > 6) {
+    return;
+  }
 
-    // If an operator has not been clicked, populate
-    if (operatorClicked === false) {
-
-        // Replace digit w/ new digit else concatenate new digit
-        if (currentDigits === '0' && digit !== '0') {
-            document.querySelector('#digits').textContent = digit;
-            firstNum = digit;
-        } else if (currentDigits === '0' && digit === '0'){
-            document.querySelector('#digits').textContent = digit;
-            firstNum = digit;
-            count = 0;
-            return;
-        } else {
-            document.querySelector('#digits').textContent = currentDigits + digit;
-            firstNum = currentDigits + digit;
-        }
-        count++;
+  // If an operator has not been clicked, populate
+  if (operatorClicked === false) {
+    // Replace digit w/ new digit else concatenate new digit
+    if (currentDigits === '0' && digit !== '0') {
+      document.querySelector('#digits').textContent = digit;
+      firstNum = digit;
+    } else if (currentDigits === '0' && digit === '0') {
+      document.querySelector('#digits').textContent = digit;
+      firstNum = digit;
+      count = 0;
+      return;
     } else {
-
-        // Replace current digits w/ new digit
-        if (count === 0) {
-            document.querySelector('#digits').textContent = digit;
-            secondNum = digit;
-        } else {
-            document.querySelector('#digits').textContent = currentDigits + digit;
-            secondNum = currentDigits + digit;
-        }
-        count++;
+      document.querySelector('#digits').textContent = currentDigits + digit;
+      firstNum = currentDigits + digit;
     }
+    count += 1;
+  } else {
+    // Replace current digits w/ new digit
+    if (count === 0) {
+      document.querySelector('#digits').textContent = digit;
+      secondNum = digit;
+    } else {
+      document.querySelector('#digits').textContent = currentDigits + digit;
+      secondNum = currentDigits + digit;
+    }
+    count += 1;
+  }
 
-    // Style digit
-    let span = document.querySelector('#digits');
-    span.style.position = 'absolute';
-    span.style.bottom = '0';
-    span.style.right = '0';
-    span.style.fontSize = '60px';
-    span.style.fontFamily = 'Roboto Mono', monospace;
+  // Style digit
+  const span = document.querySelector('#digits');
+  span.style.position = 'absolute';
+  span.style.bottom = '0';
+  span.style.right = '0';
+  span.style.fontSize = '60px';
+  span.style.fontFamily = 'Roboto Mono', monospace;
 }
 
 // FUNCTION: reset display
 function reset() {
-    document.querySelector('#digits').textContent = 0;
-    count = 0;
+  document.querySelector('#digits').textContent = 0;
+  count = 0;
 }
 
-// FUNCTION: sign 
+// FUNCTION: sign
 function sign() {
-    let currentDigits = document.getElementById('digits').textContent;
-    console.log(currentDigits);
-    if (currentDigits > 0) {
-        currentDigits = parseFloat(currentDigits);
-        currentDigits = '-' + currentDigits;
-        document.querySelector('#digits').textContent = currentDigits;
-    } else if (currentDigits < 0) {
-        currentDigits = currentDigits.slice(1);
-        document.querySelector('#digits').textContent = currentDigits;
-    }
+  let currentDigits = document.getElementById('digits').textContent;
 
-    if (operatorClicked === false) {
-        firstNum = currentDigits;
-    } else if (operatorClicked === true) {
-        secondNum = currentDigits;
-    }
+  if (currentDigits > 0) {
+    currentDigits = parseFloat(currentDigits);
+    currentDigits = `-${currentDigits}`;
+    document.querySelector('#digits').textContent = currentDigits;
+  } else if (currentDigits < 0) {
+    currentDigits = currentDigits.slice(1);
+    document.querySelector('#digits').textContent = currentDigits;
+  }
+
+  if (operatorClicked === false) {
+    firstNum = currentDigits;
+  } else if (operatorClicked === true) {
+    secondNum = currentDigits;
+  }
 }
 
 // FUNCTION: percent
 function percent() {
-    let currentDigits = document.getElementById('digits').textContent;
-    currentDigits = parseFloat(currentDigits);
-    document.querySelector('#digits').textContent = currentDigits / 100;
+  let currentDigits = document.getElementById('digits').textContent;
+  currentDigits = parseFloat(currentDigits);
+  document.querySelector('#digits').textContent = currentDigits / 100;
 }
 
 // FUNCTION: dot
 function dot() {
-    let currentDigits = document.getElementById('digits').textContent;
-    if (dotCount === 0) {
-        document.querySelector('#digits').textContent = currentDigits + '.';
-        dotCount++;
-    }
-    return;
+  const currentDigits = document.getElementById('digits').textContent;
+  if (dotCount === 0) {
+    document.querySelector('#digits').textContent = `${currentDigits}.`;
+    dotCount++;
+  }
 }
 
 // FUNCTION: clicked abstraction
 function clicked() {
-    operatorClicked = true;
-    count = 0;
-    dotCount = 0;
+  operatorClicked = true;
+  count = 0;
+  dotCount = 0;
 }
 
 // FUNCTION: hover changes color
 function hover(button) {
-    button.addEventListener('mouseover', () => {
-        button.style.backgroundColor = 'white';
-    });
-    button.addEventListener('mouseleave', () => {
-        button.style.backgroundColor = '#f0f0f0';
-    });
+  button.addEventListener('mouseover', () => {
+    button.style.backgroundColor = 'white';
+  });
+  button.addEventListener('mouseleave', () => {
+    button.style.backgroundColor = '#f0f0f0';
+  });
 }
 
 // BUTTONS: Listen for clicks and hover
@@ -190,192 +185,189 @@ const multiplybtn = document.querySelector('#multiply');
 const dividebtn = document.querySelector('#divide');
 const equalsbtn = document.querySelector('#equals');
 
+// Numbers
+btn0.addEventListener('click', () => populate('zero'));
+btn1.addEventListener('click', () => populate('one'));
+btn2.addEventListener('click', () => populate('two'));
+btn3.addEventListener('click', () => populate('three'));
+btn4.addEventListener('click', () => populate('four'));
+btn5.addEventListener('click', () => populate('five'));
+btn6.addEventListener('click', () => populate('six'));
+btn7.addEventListener('click', () => populate('seven'));
+btn8.addEventListener('click', () => populate('eight'));
+btn9.addEventListener('click', () => populate('nine'));
 
-    // Numbers
-    btn0.addEventListener('click', () => populate('zero'));
-    btn1.addEventListener('click', () => populate('one'));
-    btn2.addEventListener('click', () => populate('two'));
-    btn3.addEventListener('click', () => populate('three'));
-    btn4.addEventListener('click', () => populate('four'));
-    btn5.addEventListener('click', () => populate('five'));
-    btn6.addEventListener('click', () => populate('six'));
-    btn7.addEventListener('click', () => populate('seven'));
-    btn8.addEventListener('click', () => populate('eight'));
-    btn9.addEventListener('click', () => populate('nine'));
+// Dot
+dotbtn.addEventListener('click', dot);
 
-    // Dot
-    dotbtn.addEventListener('click', dot);
+// Sign
+signbtn.addEventListener('click', sign);
 
-    // Sign
-    signbtn.addEventListener('click', sign);
+// Percent
+percentbtn.addEventListener('click', percent);
 
-    // Percent
-    percentbtn.addEventListener('click', percent);
+// Reset
+resetbtn.addEventListener('click', reset);
 
-    // Reset
-    resetbtn.addEventListener('click', reset);
+// Operators
+addbtn.addEventListener('click', () => {
+  clicked();
+  operator = 'add';
+});
+subtractbtn.addEventListener('click', () => {
+  clicked();
+  operator = 'subtract';
+});
+multiplybtn.addEventListener('click', () => {
+  clicked();
+  operator = 'multiply';
+});
+dividebtn.addEventListener('click', () => {
+  clicked();
+  operator = 'divide';
+});
 
-    // Operators
-    addbtn.addEventListener('click', () => {
-        clicked();
-        operator = 'add';
-    });   
-    subtractbtn.addEventListener('click', () => {
-        clicked();
-        operator = 'subtract';
-    });
-    multiplybtn.addEventListener('click', () => {
-        clicked();
-        operator = 'multiply';
-    });
-    dividebtn.addEventListener('click', () => {
-        clicked();
-        operator = 'divide';
-    });
+// Equals
+equalsbtn.addEventListener('click', () => {
+  firstNum = parseFloat(firstNum);
+  secondNum = parseFloat(secondNum);
+  let total = null;
 
-    // Equals
-    equalsbtn.addEventListener('click', () => {
-        firstNum = parseFloat(firstNum);
-        secondNum = parseFloat(secondNum);
-        let total = null;
+  if (operator === 'add') {
+    total = sum(firstNum, secondNum);
+    document.querySelector('#digits').textContent = total;
+    firstNum = total;
+    count = 0;
+  } else if (operator === 'subtract') {
+    total = subtract(firstNum, secondNum);
+    document.querySelector('#digits').textContent = total;
+    firstNum = total;
+    count = 0;
+  } else if (operator === 'multiply') {
+    total = multiply(firstNum, secondNum);
+    document.querySelector('#digits').textContent = total;
+    firstNum = total;
+    count = 0;
+  } else if (operator === 'divide') {
+    if (secondNum === 0) {
+      alert('Cannot divide by 0');
+      return;
+    }
+    total = divide(firstNum, secondNum);
+    document.querySelector('#digits').textContent = total;
+    firstNum = total;
+    count = 0;
+  }
+  operatorClicked = false;
+});
 
-        if (operator === 'add') {
-            total = sum(firstNum, secondNum);
-            document.querySelector('#digits').textContent = total;
-            firstNum = total;
-            count = 0;
-        } else if (operator === 'subtract') {
-            total = subtract(firstNum, secondNum);
-            document.querySelector('#digits').textContent = total;
-            firstNum = total;
-            count = 0;
-        } else if (operator === 'multiply') {
-            total = multiply(firstNum, secondNum);
-            document.querySelector('#digits').textContent = total;
-            firstNum = total;
-            count = 0;
-        } else if (operator === 'divide') {
-            if (secondNum === 0) {
-                alert("Cannot divide by 0");
-                return;
-            }
-            total = divide(firstNum, secondNum);
-            document.querySelector('#digits').textContent = total;
-            firstNum = total;
-            count = 0;
-        }
-        operatorClicked = false;
-    });
-
-    // Hover changes color
-    buttons.forEach(button => hover(button));
+// Hover changes color
+buttons.forEach((button) => hover(button));
 
 // Keyboard support
-body.addEventListener('keydown', function(e) {
-    const key = e.key;
-    let currentDigits = document.querySelector('#digits').textContent;
-    console.log(key);
-    // Backspace
-    if (key === 'Backspace' || key === 'delete') {
-
-        // If current count is 1, replace with 0
-        if (count === 1) {
-            document.querySelector('#digits').textContent = '0';
-            count = 0;
-        } else if (count > 1) {
-            document.querySelector('#digits').textContent = 
-            currentDigits.slice(0, currentDigits.length - 1);
-            count --;
-        }
+body.addEventListener('keydown', (e) => {
+  const { key } = e;
+  const currentDigits = document.querySelector('#digits').textContent;
+  console.log(key);
+  // Backspace
+  if (key === 'Backspace' || key === 'delete') {
+    // If current count is 1, replace with 0
+    if (count === 1) {
+      document.querySelector('#digits').textContent = '0';
+      count = 0;
+    } else if (count > 1) {
+      document.querySelector('#digits').textContent = currentDigits.slice(0, currentDigits.length - 1);
+      count--;
     }
+  }
 
-    // Dot
-    if (key === '.') {
-        let currentDigits = document.getElementById('digits').textContent;
-        if (dotCount === 0) {
-            document.querySelector('#digits').textContent = currentDigits + '.';
-            dotCount++;
-        }
+  // Dot
+  if (key === '.') {
+    const currentDigits = document.getElementById('digits').textContent;
+    if (dotCount === 0) {
+      document.querySelector('#digits').textContent = `${currentDigits}.`;
+      dotCount++;
+    }
+    return;
+  }
+
+  // Numbers
+  if (parseInt(key) >= 0 && parseInt(key) <= 9) {
+    keyPressed = true;
+    populate(key);
+    keyPressed = false;
+  }
+
+  // Operators
+  if (key === 'Shift') {
+    shiftPressed = true;
+  }
+
+  // Add
+  if (key === '+' && shiftPressed === true) {
+    clicked();
+    operator = 'add';
+  }
+
+  // Subtract
+  if (key === '-') {
+    clicked();
+    operator = 'subtract';
+  }
+
+  // Multiply
+  if (key === '*' && shiftPressed === true) {
+    clicked();
+    operator = 'multiply';
+  }
+
+  // Divide
+  if (key === '/') {
+    clicked();
+    operator = 'divide';
+  }
+
+  // Percent
+  if (key === '%' && shiftPressed === true) {
+    clicked();
+    percent();
+  }
+
+  // Equals
+  if (key === '=' || key === 'Enter') {
+    firstNum = parseFloat(firstNum);
+    secondNum = parseFloat(secondNum);
+    let total = null;
+
+    if (operator === 'add') {
+      total = sum(firstNum, secondNum);
+      document.querySelector('#digits').textContent = total;
+      firstNum = total;
+    } else if (operator === 'subtract') {
+      total = subtract(firstNum, secondNum);
+      document.querySelector('#digits').textContent = total;
+      firstNum = total;
+    } else if (operator === 'multiply') {
+      total = multiply(firstNum, secondNum);
+      document.querySelector('#digits').textContent = total;
+      firstNum = total;
+    } else if (operator === 'divide') {
+      if (secondNum === 0) {
+        alert('Cannot divide by 0');
         return;
+      }
+      total = divide(firstNum, secondNum);
+      document.querySelector('#digits').textContent = total;
+      firstNum = total;
     }
+    operatorClicked = false;
+    count = 0;
+  }
 
-    // Numbers
-    if (parseInt(key) >= 0 && parseInt(key) <= 9) {
-        keyPressed = true;
-        populate(key);
-        keyPressed = false;
-    }
-
-    // Operators
-    if (key === 'Shift') {
-        shiftPressed = true;
-    }
-
-        // Add
-        if (key === '+' && shiftPressed === true) {
-            clicked();
-            operator = 'add';
-        }
-
-        // Subtract
-        if (key === '-') {
-            clicked();
-            operator = 'subtract';
-        }
-
-        // Multiply
-        if (key === '*' && shiftPressed === true) {
-            clicked();
-            operator = 'multiply';
-        }
-
-        // Divide
-        if (key === '/') {
-            clicked();
-            operator = 'divide';
-        }
-
-        // Percent
-        if (key === '%' && shiftPressed === true) {
-            clicked();
-            percent();
-        }
-    
-    // Equals
-    if (key === '=' || key === 'Enter') {
-        firstNum = parseFloat(firstNum);
-        secondNum = parseFloat(secondNum);
-        let total = null;
-
-        if (operator === 'add') {
-            total = sum(firstNum, secondNum);
-            document.querySelector('#digits').textContent = total;
-            firstNum = total;
-        } else if (operator === 'subtract') {
-            total = subtract(firstNum, secondNum);
-            document.querySelector('#digits').textContent = total;
-            firstNum = total;
-        } else if (operator === 'multiply') {
-            total = multiply(firstNum, secondNum);
-            document.querySelector('#digits').textContent = total;
-            firstNum = total;
-        } else if (operator === 'divide') {
-            if (secondNum === 0) {
-                alert("Cannot divide by 0");
-                return;
-            }
-            total = divide(firstNum, secondNum);
-            document.querySelector('#digits').textContent = total;
-            firstNum = total;
-        }
-        operatorClicked = false;
-        count = 0;
-    }
-
-    // AC
-    if (key === 'Escape') {
-        reset();
-    }
+  // AC
+  if (key === 'Escape') {
+    reset();
+  }
 });
 
 body.addEventListener('keyup', () => (shiftPressed = false));
